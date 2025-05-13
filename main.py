@@ -63,7 +63,7 @@ while True:
  
      # draw scene
     sc.fill((0, 0, 0))  # clear screen
-    render_3d_view(sc, player.pos, player.angle)
+    renderer.render_3d_view(sc, player.pos, player.angle)
    
     
 
