@@ -7,6 +7,26 @@ from raycasting import *
 from object_renderer import *
 
 class Game:
+    #Start Screen
+    def start_screen(self):
+        font = pg.font.SysFont('Arial', 70)
+        small_font = pg.font.SysFont('Arial', 50)
+        title = font.render('Start Screen', True, (255, 255, 255))
+        prompt = small_font.render('Press key or mouse to continue', True, (255, 255, 255))
+
+        while True:
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(title, (HALF_WIDTH - title.get_width() // 2, HALF_HEIGHT - 100))
+            self.screen.blit(prompt, (HALF_WIDTH - prompt.get_width() // 2, HALF_HEIGHT + 50))
+
+            pg.display.flip()
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    sys.exit()
+                elif event.type == pg.MOUSEBUTTONDOWN or event.type == pg.KEYDOWN:
+                    return
+
     def __init__(self):
         pg.init()
         pg.mouse.set_visible(False)
@@ -42,6 +62,7 @@ class Game:
                 sys.exit()
 
     def run(self):
+        self.start_screen()
         while True:
             self.check_events()
             self.update()
